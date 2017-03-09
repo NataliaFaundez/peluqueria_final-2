@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+<table class="table">
+<thead>
+  <th>Nombre</th>
+  <th>Apellido</th>
+  <th>Rut</th>
+  <th>Email</th>
+  <th>Telefono</th>
+  <th>Editar</th>
+</thead>
+  <tbody>
+    <tr>
+    <td><%= @client.nombre %></td>
+    <td><%= @client.apellido %></td>
+    <td><%= @client.rut %></td>
+    <td><%= @client.email %></td>
+    <td><%= @client.telefono %></td>
+    <td><%= link_to 'Editar', edit_client_path(@client) %></td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<div>
+<h2>Crear Registro</h2>
+<%= render('records/form', record: @record )%>
+<hr>
+<h2>Historial</h2>
+
+<table class="table">
+<thead>
+  <th>Servicio</th>
+  <th>Anotaciones</th>
+  <th>Estilista</th>
+  <th>Fecha</th>
+  <th>Editar</th>
+  <th>Borrar</th>
+</thead>
+<tbody>
+  <% @records.each do |record| %>
+    <tr>
+      <td><%=record.service.nombre %></td>
+      <td><%=record.anotacion %></td>
+      <td><%=record.user.nombre %></td>
+      <td><%=record.created_at %></td>
+      <td><%= link_to 'Editar', edit_record_path(record , :client_id => params[:id]) %></td>
+      <td><%= link_to 'Borrar', record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+
+</div>
+<hr>
+<h3><%= link_to 'Volver', clients_path %></h3>

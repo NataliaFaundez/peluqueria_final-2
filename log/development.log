@@ -1,0 +1,1228 @@
+  [1m[35m (100.6ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (80.7ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT DATABASE() as db[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT GET_LOCK('3057742263294663840', 0);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateClients (20160827181238)
+  [1m[35m (101.7ms)[0m  [1m[35mCREATE TABLE `clients` (`id` int AUTO_INCREMENT PRIMARY KEY, `nombre` varchar(255), `apellido` varchar(255), `rut` varchar(255), `email` varchar(255), `telefono` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20160827181238')[0m
+  [1m[35m (41.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeviseCreateUsers (20160827182547)
+  [1m[35m (72.0ms)[0m  [1m[35mCREATE TABLE `users` (`id` int AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `nombre` varchar(255), `apellido` varchar(255), `porcentaje` int DEFAULT 30, `estado` tinyint(1) DEFAULT 1, `admin` tinyint(1) DEFAULT 0, `caja` tinyint(1) DEFAULT 0, `estilista` tinyint(1) DEFAULT 0, `contador` tinyint(1) DEFAULT 0, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (152.9ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+  [1m[35m (165.8ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_reset_password_token`  ON `users` (`reset_password_token`) [0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20160827182547')[0m
+  [1m[35m (38.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateServices (20160827204149)
+  [1m[35m (75.2ms)[0m  [1m[35mCREATE TABLE `services` (`id` int AUTO_INCREMENT PRIMARY KEY, `nombre` varchar(255), `valor` int, `estado` tinyint(1) DEFAULT 1, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20160827204149')[0m
+  [1m[35m (30.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateInventaries (20160827225314)
+  [1m[35m (74.6ms)[0m  [1m[35mCREATE TABLE `inventaries` (`id` int AUTO_INCREMENT PRIMARY KEY, `nombre` varchar(255), `codigo` varchar(255), `cantidad` int, `estado` tinyint(1) DEFAULT 1, `marca` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20160827225314')[0m
+  [1m[35m (30.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRecords (20160918204059)
+  [1m[35m (151.0ms)[0m  [1m[35mCREATE TABLE `records` (`id` int AUTO_INCREMENT PRIMARY KEY, `client_id` int, `service_id` int, `user_id` int, `anotacion` varchar(255), `valor` int, `comision` decimal, `boleta` int, `fecha` date, `medio_pago` varchar(255), `activo` tinyint(1) DEFAULT 1, `estado` tinyint(1) DEFAULT 1, `pagado` tinyint(1) DEFAULT 1, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_records_on_client_id`  (`client_id`),  INDEX `index_records_on_service_id`  (`service_id`),  INDEX `index_records_on_user_id`  (`user_id`), CONSTRAINT `fk_rails_5aff363a42`
+FOREIGN KEY (`client_id`)
+  REFERENCES `clients` (`id`)
+, CONSTRAINT `fk_rails_0a746d40fc`
+FOREIGN KEY (`service_id`)
+  REFERENCES `services` (`id`)
+, CONSTRAINT `fk_rails_9ba3ba9afc`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20160918204059')[0m
+  [1m[35m (40.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2017-03-09 21:59:58', '2017-03-09 21:59:58')[0m
+  [1m[35m (38.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT RELEASE_LOCK('3057742263294663840')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW CREATE TABLE `clients`[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'clients'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `inventaries`[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'inventaries'[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSHOW CREATE TABLE `records`[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'records'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `services`[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'services'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSHOW CREATE TABLE `users`[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSHOW TABLE STATUS LIKE 'users'[0m
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:00:44 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by DashboardController#unregistred as HTML
+Completed 401 Unauthorized in 17ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-03-09 19:00:44 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (18.5ms)
+  Rendered layouts/_menu.html.erb (2.0ms)
+Completed 200 OK in 817ms (Views: 786.5ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2017-03-09 19:01:42 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"cmn0r9bnD2TsHben2ebcvr7clDZTVaTjpx+M9siw+/PXqtIxNeDT/xs5Mf6RdGOrcZ1zEHPlrNsr4eWsPd6MoA==", "user"=>{"email"=>"admin@admin.cl", "password"=>"[FILTERED]"}, "commit"=>"Ingresar"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'admin@admin.cl' ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 9ms (ActiveRecord: 0.5ms)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"cmn0r9bnD2TsHben2ebcvr7clDZTVaTjpx+M9siw+/PXqtIxNeDT/xs5Mf6RdGOrcZ1zEHPlrNsr4eWsPd6MoA==", "user"=>{"email"=>"admin@admin.cl", "password"=>"[FILTERED]"}, "commit"=>"Ingresar"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (2.6ms)
+  Rendered layouts/_menu.html.erb (2.0ms)
+Completed 200 OK in 347ms (Views: 38.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2017-03-09 19:01:45 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"THXACjQPlH/IX8+4+laahobvw3Xcg317xy9lilANEcXptuaU1whI5D97SeGyxCWTSa4kU/wzdUNL0QzQpWNmlg==", "user"=>{"email"=>"admin@admin.cl", "password"=>"[FILTERED]"}, "commit"=>"Ingresar"}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"THXACjQPlH/IX8+4+laahobvw3Xcg317xy9lilANEcXptuaU1whI5D97SeGyxCWTSa4kU/wzdUNL0QzQpWNmlg==", "user"=>{"email"=>"admin@admin.cl", "password"=>"[FILTERED]"}, "commit"=>"Ingresar"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_menu.html.erb (3.9ms)
+Completed 200 OK in 103ms (Views: 100.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:10:52 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by DashboardController#unregistred as HTML
+Completed 401 Unauthorized in 21ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-03-09 19:10:53 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (19.2ms)
+  Rendered layouts/_menu.html.erb (1.5ms)
+Completed 200 OK in 439ms (Views: 403.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-03-09 19:11:00 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (18.9ms)
+  Rendered layouts/_menu.html.erb (1.5ms)
+Completed 200 OK in 68ms (Views: 64.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-03-09 19:11:28 -0300
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"xU1VMzBmQNrV0LGu8h/urJLnQLJnQTADQLmZQM3BdQxEX1a38JXVnhDtUpgE0z05e1pFrsgRoATiMGisWujTMg==", "user"=>{"email"=>"admin@admin.cl", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "nombre"=>"admin", "apellido"=>"admin", "admin"=>"1", "caja"=>"1", "estilista"=>"1", "contador"=>"1"}, "commit"=>"Crear"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'admin@admin.cl' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `nombre`, `apellido`, `admin`, `caja`, `estilista`, `contador`, `created_at`, `updated_at`) VALUES ('admin@admin.cl', '$2a$11$OttwmHwrrsazi2wMlnDeG.vTsSRGoO6kaqvnGuMqxaciuJqcMRk9C', 'admin', 'admin', 1, 1, 1, 1, '2017-03-09 22:11:28', '2017-03-09 22:11:28')[0m
+  [1m[35m (37.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `users` SET `sign_in_count` = 1, `current_sign_in_at` = '2017-03-09 22:11:28', `last_sign_in_at` = '2017-03-09 22:11:28', `current_sign_in_ip` = '127.0.0.1', `last_sign_in_ip` = '127.0.0.1' WHERE `users`.`id` = 1[0m
+  [1m[35m (25.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 430ms (ActiveRecord: 64.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:11:28 -0300
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_menu.html.erb (1.9ms)
+Completed 200 OK in 37ms (Views: 35.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:11:48 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 52ms (Views: 49.9ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2017-03-09 19:11:52 -0300
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"gYAOes6AYYATFW5n7nRAC5srH14q34qP0PY43TyyeKMkQyjkLYe9G+Qx6D6m5v8eVGr4eApvgrdcCFGHydwP8A=="}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 35ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:11:52 -0300
+Processing by DashboardController#unregistred as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-03-09 19:11:52 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (2.4ms)
+  Rendered layouts/_menu.html.erb (1.9ms)
+Completed 200 OK in 42ms (Views: 41.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2017-03-09 19:11:58 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Pk1kQPxXGyP1GvxVC8NOAaz2+KbLsnc50ewIj5BToPkqNETg6tK+a2LdpInmgaMvq9jbAhBxblpoxEOn5rHJ8Q==", "user"=>{"email"=>"admin@admin.cl", "password"=>"[FILTERED]"}, "commit"=>"Ingresar"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'admin@admin.cl' ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[33mUPDATE `users` SET `current_sign_in_at` = '2017-03-09 22:11:59', `sign_in_count` = 2, `updated_at` = '2017-03-09 22:11:59' WHERE `users`.`id` = 1[0m
+  [1m[35m (45.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 353ms (ActiveRecord: 47.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:11:59 -0300
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_menu.html.erb (3.2ms)
+Completed 200 OK in 43ms (Views: 42.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:01 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_menu.html.erb (1.9ms)
+Completed 200 OK in 61ms (Views: 59.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:07 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_menu.html.erb (2.6ms)
+Completed 200 OK in 101ms (Views: 99.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:10 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_menu.html.erb (2.2ms)
+Completed 200 OK in 67ms (Views: 65.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/clients" for 127.0.0.1 at 2017-03-09 19:12:11 -0300
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:11 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_menu.html.erb (2.7ms)
+Completed 200 OK in 45ms (Views: 44.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/services" for 127.0.0.1 at 2017-03-09 19:12:12 -0300
+Processing by ServicesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:12 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_menu.html.erb (3.0ms)
+Completed 200 OK in 41ms (Views: 40.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/inventaries" for 127.0.0.1 at 2017-03-09 19:12:14 -0300
+Processing by InventariesController#index as HTML
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 8ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:14 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_menu.html.erb (6.0ms)
+Completed 200 OK in 61ms (Views: 59.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/commission/index" for 127.0.0.1 at 2017-03-09 19:12:15 -0300
+Processing by CommissionController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering commission/index.html.erb within layouts/application
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`contador` = 0 AND `users`.`admin` = 0 AND `users`.`caja` = 0 ORDER BY created_at DESC[0m
+  Rendered commission/index.html.erb within layouts/application (6.9ms)
+  Rendered layouts/_menu.html.erb (2.5ms)
+Completed 200 OK in 87ms (Views: 79.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/services" for 127.0.0.1 at 2017-03-09 19:12:17 -0300
+Processing by ServicesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:17 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_menu.html.erb (3.0ms)
+Completed 200 OK in 52ms (Views: 50.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:19 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_menu.html.erb (2.7ms)
+Completed 200 OK in 69ms (Views: 67.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:20 -0300
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_menu.html.erb (3.4ms)
+Completed 200 OK in 81ms (Views: 78.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/clients" for 127.0.0.1 at 2017-03-09 19:12:21 -0300
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:21 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 42ms (Views: 40.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/services" for 127.0.0.1 at 2017-03-09 19:12:22 -0300
+Processing by ServicesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:22 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_menu.html.erb (2.7ms)
+Completed 200 OK in 52ms (Views: 50.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/inventaries" for 127.0.0.1 at 2017-03-09 19:12:23 -0300
+Processing by InventariesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:23 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_menu.html.erb (3.6ms)
+Completed 200 OK in 60ms (Views: 58.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/commission/index" for 127.0.0.1 at 2017-03-09 19:12:23 -0300
+Processing by CommissionController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering commission/index.html.erb within layouts/application
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`contador` = 0 AND `users`.`admin` = 0 AND `users`.`caja` = 0 ORDER BY created_at DESC[0m
+  Rendered commission/index.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_menu.html.erb (2.2ms)
+Completed 200 OK in 72ms (Views: 65.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/inventaries" for 127.0.0.1 at 2017-03-09 19:12:25 -0300
+Processing by InventariesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 7ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:25 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.7ms)
+  Rendered layouts/_menu.html.erb (2.2ms)
+Completed 200 OK in 53ms (Views: 51.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/services" for 127.0.0.1 at 2017-03-09 19:12:26 -0300
+Processing by ServicesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:26 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (2.2ms)
+  Rendered layouts/_menu.html.erb (2.6ms)
+Completed 200 OK in 52ms (Views: 50.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/clients" for 127.0.0.1 at 2017-03-09 19:12:27 -0300
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:27 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.8ms)
+  Rendered layouts/_menu.html.erb (3.8ms)
+Completed 200 OK in 48ms (Views: 46.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:28 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 83ms (Views: 81.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:12:29 -0300
+DEPRECATION WARNING: before_filter is deprecated and will be removed in Rails 5.1. Use before_action instead. (called from <class:UsersController> at /home/natalia/Escritorio/peluqueria/app/controllers/users_controller.rb:4)
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:29 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_menu.html.erb (2.0ms)
+Completed 200 OK in 44ms (Views: 41.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:31 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_menu.html.erb (2.5ms)
+Completed 200 OK in 61ms (Views: 59.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:40 -0300
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_menu.html.erb (2.0ms)
+Completed 200 OK in 53ms (Views: 51.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:12:59 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_menu.html.erb (2.2ms)
+Completed 200 OK in 67ms (Views: 65.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/clients" for 127.0.0.1 at 2017-03-09 19:13:05 -0300
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:05 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_menu.html.erb (2.2ms)
+Completed 200 OK in 48ms (Views: 46.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/services" for 127.0.0.1 at 2017-03-09 19:13:08 -0300
+Processing by ServicesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:08 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_menu.html.erb (2.8ms)
+Completed 200 OK in 49ms (Views: 47.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/commission/index" for 127.0.0.1 at 2017-03-09 19:13:09 -0300
+Processing by CommissionController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering commission/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`contador` = 0 AND `users`.`admin` = 0 AND `users`.`caja` = 0 ORDER BY created_at DESC[0m
+  Rendered commission/index.html.erb within layouts/application (5.7ms)
+  Rendered layouts/_menu.html.erb (4.1ms)
+Completed 200 OK in 81ms (Views: 73.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:11 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_menu.html.erb (3.5ms)
+Completed 200 OK in 71ms (Views: 69.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:12 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_menu.html.erb (2.8ms)
+Completed 200 OK in 71ms (Views: 69.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:13:14 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:14 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 45ms (Views: 42.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:13:15 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 8ms (ActiveRecord: 2.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:15 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 40ms (Views: 39.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:13:15 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:15 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_menu.html.erb (2.2ms)
+Completed 200 OK in 48ms (Views: 46.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:13:15 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:15 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.3ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 38ms (Views: 36.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/commission/index" for 127.0.0.1 at 2017-03-09 19:13:16 -0300
+Processing by CommissionController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering commission/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`contador` = 0 AND `users`.`admin` = 0 AND `users`.`caja` = 0 ORDER BY created_at DESC[0m
+  Rendered commission/index.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_menu.html.erb (3.2ms)
+Completed 200 OK in 79ms (Views: 75.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:13:18 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:18 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_menu.html.erb (11.6ms)
+Completed 200 OK in 48ms (Views: 46.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:13:18 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:19 -0300
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_menu.html.erb (2.0ms)
+Completed 200 OK in 41ms (Views: 39.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:20 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 50ms (Views: 48.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:20 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_menu.html.erb (2.6ms)
+Completed 200 OK in 77ms (Views: 75.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:20 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_menu.html.erb (2.6ms)
+Completed 200 OK in 66ms (Views: 64.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:20 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_menu.html.erb (2.3ms)
+Completed 200 OK in 64ms (Views: 62.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:20 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_menu.html.erb (3.3ms)
+Completed 200 OK in 62ms (Views: 60.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/commission/index" for 127.0.0.1 at 2017-03-09 19:13:21 -0300
+Processing by CommissionController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering commission/index.html.erb within layouts/application
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`contador` = 0 AND `users`.`admin` = 0 AND `users`.`caja` = 0 ORDER BY created_at DESC[0m
+  Rendered commission/index.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 80ms (Views: 70.9ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/inventaries" for 127.0.0.1 at 2017-03-09 19:13:23 -0300
+Processing by InventariesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:23 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_menu.html.erb (2.0ms)
+Completed 200 OK in 42ms (Views: 40.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/services" for 127.0.0.1 at 2017-03-09 19:13:26 -0300
+Processing by ServicesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:26 -0300
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 50ms (Views: 47.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/clients" for 127.0.0.1 at 2017-03-09 19:13:27 -0300
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :validar rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:13:27 -0300
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (1.0ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 44ms (Views: 42.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:14:12 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_menu.html.erb (2.2ms)
+Completed 200 OK in 39ms (Views: 38.3ms | ActiveRecord: 0.0ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2017-03-09 19:14:15 -0300
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"JNNieMFmOMf2sGRnGPQvZON4AGxG4kXny/0xpnskoXOj5dUyRk+bN5F8udDfnggASZr2kEXy73KTrOp4SXrICw=="}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 9ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:14:15 -0300
+Processing by DashboardController#unregistred as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-03-09 19:14:15 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (4.9ms)
+  Rendered layouts/_menu.html.erb (3.1ms)
+Completed 200 OK in 47ms (Views: 45.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-03-09 19:14:18 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/registrations/new.html.erb within layouts/application (14.9ms)
+  Rendered layouts/_menu.html.erb (2.8ms)
+Completed 200 OK in 77ms (Views: 75.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-03-09 19:14:39 -0300
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lUTFXtCNy/KumVxu0zC6tTuInKwV+XieWYS3FceJuV0a0QqGls/VdU+Qq18PqaIK8uSvmGn44KGIwkY14eZqzg==", "user"=>{"email"=>"natalia@natalia.cl", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "nombre"=>"nana", "apellido"=>"nana", "admin"=>"1", "caja"=>"0", "estilista"=>"0", "contador"=>"0"}, "commit"=>"Crear"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'natalia@natalia.cl' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `nombre`, `apellido`, `admin`, `created_at`, `updated_at`) VALUES ('natalia@natalia.cl', '$2a$11$/GJD.WP.x0UiDPCWmkYcAOktHnOl7mVabjy4UK9GuX49.9glkUrWq', 'nana', 'nana', 1, '2017-03-09 22:14:40', '2017-03-09 22:14:40')[0m
+  [1m[35m (49.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `users` SET `sign_in_count` = 1, `current_sign_in_at` = '2017-03-09 22:14:40', `last_sign_in_at` = '2017-03-09 22:14:40', `current_sign_in_ip` = '127.0.0.1', `last_sign_in_ip` = '127.0.0.1' WHERE `users`.`id` = 2[0m
+  [1m[35m (48.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 415ms (ActiveRecord: 100.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:14:40 -0300
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_menu.html.erb (2.2ms)
+Completed 200 OK in 45ms (Views: 43.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/clients" for 127.0.0.1 at 2017-03-09 19:14:43 -0300
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering clients/index.html.erb within layouts/application
+  Rendered clients/_search.html.erb (1.9ms)
+  [1m[36mClient Load (0.4ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` LIMIT 20 OFFSET 0[0m
+  Rendered clients/index.html.erb within layouts/application (11.4ms)
+  Rendered layouts/_menu.html.erb (2.3ms)
+Completed 200 OK in 68ms (Views: 58.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/clients/new" for 127.0.0.1 at 2017-03-09 19:14:45 -0300
+Processing by ClientsController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering clients/new.html.erb within layouts/application
+  Rendered clients/_form.html.erb (8.6ms)
+  Rendered clients/new.html.erb within layouts/application (10.4ms)
+  Rendered layouts/_menu.html.erb (2.0ms)
+Completed 200 OK in 68ms (Views: 46.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/services" for 127.0.0.1 at 2017-03-09 19:14:47 -0300
+Processing by ServicesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering services/index.html.erb within layouts/application
+  [1m[36mService Load (0.5ms)[0m  [1m[34mSELECT  `services`.* FROM `services` LIMIT 20 OFFSET 0[0m
+  Rendered services/index.html.erb within layouts/application (7.9ms)
+  Rendered layouts/_menu.html.erb (3.2ms)
+Completed 200 OK in 80ms (Views: 66.4ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/inventaries" for 127.0.0.1 at 2017-03-09 19:14:48 -0300
+Processing by InventariesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering inventaries/index.html.erb within layouts/application
+  [1m[36mInventary Load (0.6ms)[0m  [1m[34mSELECT `inventaries`.* FROM `inventaries` ORDER BY created_at DESC[0m
+  Rendered inventaries/index.html.erb within layouts/application (6.9ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 62ms (Views: 52.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/commission/index" for 127.0.0.1 at 2017-03-09 19:14:50 -0300
+Processing by CommissionController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering commission/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`contador` = 0 AND `users`.`admin` = 0 AND `users`.`caja` = 0 ORDER BY created_at DESC[0m
+  Rendered commission/index.html.erb within layouts/application (2.9ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 61ms (Views: 56.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:14:51 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (9.6ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 77ms (Views: 69.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:15:10 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (5.5ms)
+  Rendered layouts/_menu.html.erb (2.0ms)
+Completed 200 OK in 58ms (Views: 53.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:15:13 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (9.3ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 76ms (Views: 70.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:15:15 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (7.9ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 72ms (Views: 66.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:15:17 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (4.3ms)
+  Rendered layouts/_menu.html.erb (4.2ms)
+Completed 200 OK in 87ms (Views: 82.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:15:18 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (4.4ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 65ms (Views: 60.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:15:21 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (6.0ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 69ms (Views: 62.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:15:22 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (5.0ms)
+  Rendered layouts/_menu.html.erb (2.7ms)
+Completed 200 OK in 67ms (Views: 62.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:15:22 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (5.7ms)
+  Rendered layouts/_menu.html.erb (2.2ms)
+Completed 200 OK in 63ms (Views: 57.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:15:22 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (5.5ms)
+  Rendered layouts/_menu.html.erb (4.2ms)
+Completed 200 OK in 70ms (Views: 65.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:15:22 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (4.7ms)
+  Rendered layouts/_menu.html.erb (2.3ms)
+Completed 200 OK in 81ms (Views: 76.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:15:23 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (5.8ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (4.6ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 78ms (Views: 67.7ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:15:28 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (7.1ms)
+  Rendered layouts/_menu.html.erb (2.2ms)
+Completed 200 OK in 64ms (Views: 59.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2017-03-09 19:20:01 -0300
+Processing by Devise::RegistrationsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-09 19:20:01 -0300
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_menu.html.erb (2.2ms)
+Completed 200 OK in 62ms (Views: 59.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:25:55 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (2.9ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 48ms (Views: 43.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:25:59 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (4.6ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 59ms (Views: 54.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:26:01 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (5.5ms)
+  Rendered layouts/_menu.html.erb (2.0ms)
+Completed 200 OK in 76ms (Views: 70.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:26:05 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (4.7ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (9.4ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 78ms (Views: 69.4ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:28:33 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (140.4ms)
+Completed 500 Internal Server Error in 156ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `edit_user_path' for #<#<Class:0xb27c051c>:0xb25fb5ec>
+Did you mean?  edit_service_path):
+    28:       <td><%= user.caja? %></td>
+    29:       <td><%= user.estilista? %></td>
+    30:       <td><%= user.contador? %></td>
+    31:       <td><%= link_to 'Editar', edit_user_path(user)  %></td>
+    32:     </tr>
+    33:     <% end %>
+    34:   </tbody>
+  
+app/views/users/index.html.erb:31:in `block in _app_views_users_index_html_erb___936818663__651174508'
+app/views/users/index.html.erb:22:in `_app_views_users_index_html_erb___936818663__651174508'
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.4ms)
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (44.8ms)
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:30:45 -0300
+DEPRECATION WARNING: before_filter is deprecated and will be removed in Rails 5.1. Use before_action instead. (called from <class:UsersController> at /home/natalia/Escritorio/peluqueria/app/controllers/users_controller.rb:4)
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for UsersController):
+  
+actionpack (5.0.2) lib/abstract_controller/base.rb:121:in `process'
+actionview (5.0.2) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.0.2) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (5.0.2) lib/action_controller/metal.rb:262:in `dispatch'
+actionpack (5.0.2) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (5.0.2) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (5.0.2) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.2) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.2) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.2) lib/action_dispatch/routing/route_set.rb:725:in `call'
+warden (1.2.7) lib/warden/manager.rb:36:in `block in call'
+warden (1.2.7) lib/warden/manager.rb:35:in `catch'
+warden (1.2.7) lib/warden/manager.rb:35:in `call'
+rack (2.0.1) lib/rack/etag.rb:25:in `call'
+rack (2.0.1) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.1) lib/rack/head.rb:12:in `call'
+rack (2.0.1) lib/rack/session/abstract/id.rb:222:in `context'
+rack (2.0.1) lib/rack/session/abstract/id.rb:216:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.0.2) lib/active_record/migration.rb:553:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.2) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.2) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.2) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.2) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.2) lib/rails/engine.rb:522:in `call'
+puma (3.7.1) lib/puma/configuration.rb:232:in `call'
+puma (3.7.1) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.1) lib/puma/server.rb:415:in `process_client'
+puma (3.7.1) lib/puma/server.rb:275:in `block in run'
+puma (3.7.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/unknown_action.html.erb within rescues/layout
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/unknown_action.html.erb within rescues/layout (0.7ms)
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:31:18 -0300
+DEPRECATION WARNING: before_filter is deprecated and will be removed in Rails 5.1. Use before_action instead. (called from <class:UsersController> at /home/natalia/Escritorio/peluqueria/app/controllers/users_controller.rb:4)
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (141.9ms)
+Completed 500 Internal Server Error in 172ms (ActiveRecord: 0.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `edit_user_path' for #<#<Class:0xb2376100>:0xb2375638>
+Did you mean?  edit_service_path):
+    28:       <td><%= user.caja? %></td>
+    29:       <td><%= user.estilista? %></td>
+    30:       <td><%= user.contador? %></td>
+    31:       <td><%= link_to 'Editar', edit_user_path(user)  %></td>
+    32:     </tr>
+    33:     <% end %>
+    34:   </tbody>
+  
+app/views/users/index.html.erb:31:in `block in _app_views_users_index_html_erb___936818663__652496198'
+app/views/users/index.html.erb:22:in `_app_views_users_index_html_erb___936818663__652496198'
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.7ms)
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (45.2ms)
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:31:43 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (7.4ms)
+  Rendered layouts/_menu.html.erb (2.1ms)
+Completed 200 OK in 54ms (Views: 49.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:31:47 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (4.1ms)
+  Rendered layouts/_menu.html.erb (2.2ms)
+Completed 200 OK in 65ms (Views: 60.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:31:49 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (4.9ms)
+  Rendered layouts/_menu.html.erb (2.0ms)
+Completed 200 OK in 83ms (Views: 78.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/index" for 127.0.0.1 at 2017-03-09 19:31:51 -0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  Rendered users/index.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_menu.html.erb (2.2ms)
+Completed 200 OK in 66ms (Views: 62.0ms | ActiveRecord: 0.5ms)
+
+

@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Comisiones") do |sheet|
+sheet.add_row ['Servicio', 'Fecha','Valor', 'Comision', 'Total' ,'Pago']
+  @records.each do |record|
+    sheet.add_row [record.service.nombre,record.created_at, record.valor,record.comision]
+  end
+end

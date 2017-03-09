@@ -1,0 +1,2 @@
+json.extract! record, :id, :clients_id, :service_id, :users_id, :anotacion, :valor, :comision, :boleta, :fecha, :medio_pago, :activo, :estado, :pagado, :created_at, :updated_at
+json.url record_url(record, format: :json)

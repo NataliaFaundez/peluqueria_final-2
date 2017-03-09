@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clients: one
+  service: one
+  users: one
+  anotacion: MyString
+  valor: 1
+  comision: 9.99
+  boleta: 1
+  fecha: 2016-09-18
+  medio_pago: MyString
+  activo: false
+  estado: false
+  pagado: false
+
+two:
+  clients: two
+  service: two
+  users: two
+  anotacion: MyString
+  valor: 1
+  comision: 9.99
+  boleta: 1
+  fecha: 2016-09-18
+  medio_pago: MyString
+  activo: false
+  estado: false
+  pagado: false

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+  <div class="">
+  <label>Crear Producto:</label>
+    <%= link_to 'Nuevo Producto', new_inventary_path %>
+  </div>
+  <br>
+<div class="">
+  <h3><%= link_to 'Obtener en Excel', inventaries_path(format: :xlsx) %></h3>
+</div>
+<br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Marca</th>
+      <th>Nombre</th>
+      <th>Codigo</th>
+      <th>Cantidad</th>
+      <th>Editar</th>
+      <th>Borrar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inventaries.each do |inventary| %>
+      <tr>
+        <td><%= inventary.marca %></td>
+        <td><%= inventary.nombre %></td>
+        <td><%= inventary.codigo %></td>
+        <td><%= inventary.cantidad %></td>
+        <td><%= link_to 'Editar', edit_inventary_path(inventary) %></td>
+        <td><%= link_to 'Borrar', inventary, method: :delete, data: { confirm: 'Esta Seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+

@@ -1,0 +1,16 @@
+<div class="col-md-12">
+  <h2>Busqueda Clientes Rut</h2>
+    <%= form_tag clients_buscar_path, method: :get , class:'form-horizontal' do %>
+      <div class="form-group">
+        <%= label_tag :rut,nil, class: 'col-sm-1 control-label' %>
+
+      <div class="col-sm-5">
+        <%= text_field_tag :rut,nil,class:'form-control',placeholder: 'Ingrese Rut',required: true %>
+      </div>
+
+      <div class="actions">
+        <%= submit_tag('Buscar',class: 'btn btn-default') %>
+      </div>
+      </div>
+    <% end %>
+  </div>

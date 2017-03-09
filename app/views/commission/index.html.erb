@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Comisiones por Estilista</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Estilista</th>
+      <th>Revisar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.nombre %></td>
+        <td><%= link_to 'Revisar', commission_employee_path(user_id:user.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

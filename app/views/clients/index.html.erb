@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+  <div class="">
+  <label>Crear Clientes:</label>
+    <%= link_to 'Nuevo', new_client_path %>
+  </div>
+
+<div class="row">
+  <% render ('clients/search') %>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Rut</th>
+      <th>Revisar</th>
+      <th>Editar</th>
+      <th>Borrar</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clients.each do |client| %>
+      <tr>
+        <td><%= client.nombre %></td>
+        <td><%= client.apellido %></td>
+        <td><%= client.rut %></td>
+        <td><%= link_to 'Revisar', client %></td>
+        <td><%= link_to 'Editar', edit_client_path(client) %></td>
+        <td><%= link_to 'Borrar', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @clients %>
+<br>
+
+

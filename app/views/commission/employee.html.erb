@@ -1,0 +1,28 @@
+<table class="table">
+<thead>
+  <th>Servicio</th>
+  <th>Fecha</th>
+  <th>Valor</th>
+  <th>Comision</th>
+  <th>Total</th>
+</thead>
+<tbody>
+    <% @records.each do |record| %>
+    <tr>
+      <td><%=record.service.nombre %></td>
+      <td><%=record.created_at %></td>
+      <td><%=record.valor %></td>
+      <td><%=record.comision %></td>
+      <td><%= @total = @total + record.comision  %></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+<hr>
+<h3><%= link_to 'Excel', commission_employee_path( format: :xlsx) %></h3>
+<hr>
+<h3><%= link_to 'Pagar', commission_pagar_path(user_id: params[:user_id]) %></h3>
+
+<hr>
+<h3><%= link_to 'Volver', commission_index_path %></h3>
+</div>

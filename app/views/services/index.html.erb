@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+  
+  <div class="">
+  <label>Crear Servicio:</label>
+    <%= link_to 'Nuevo Servicio', new_service_path %>
+  </div>
+  <br>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Valor</th>
+      <th>Editar</th>
+      <th>Borrar</th>
+      </tr>
+  </thead>
+
+  <tbody>
+    <% @services.each do |service| %>
+      <tr>
+        <td><%= service.nombre %></td>
+        <td><%= service.valor %></td>
+        <td><%= link_to 'Editar', edit_service_path(service) %></td>
+        <td><%= link_to 'Borrar', service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @services %>
+
+<br>
+
+

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  codigo: 1
+  cantidad: 1
+  estado: false
+  marca: MyString
+
+two:
+  nombre: MyString
+  codigo: 1
+  cantidad: 1
+  estado: false
+  marca: MyString

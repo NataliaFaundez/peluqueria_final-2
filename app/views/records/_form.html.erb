@@ -1,0 +1,73 @@
+<%= form_for(record) do |f| %>
+  <% if record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+      <ul>
+      <% record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field(:client_id, :value => params[:id]) %>
+  
+  <div class="field">
+     <div class="form-group">
+        <%= f.label :Servicio,class: 'col-sm-1 control-label' %>
+        <div class="col-sm-5">
+          <%= f.select(:service_id ,Service.all.collect{ |p| [ p.nombre, p.id ] }, {prompt: false}, {class:'form-control'}) %>
+        </div>
+      </div>
+  </div>
+  <br>
+  <div class="field">
+     <div class="form-group">
+        <%= f.label :Estilista,class: 'col-sm-1 control-label' %>
+        <div class="col-sm-5">
+          <%= f.select :user_id, User.where(:contador => false , :admin => false, :caja => false).collect{ |p| [ p.nombre, p.id ] }, {prompt: false}, {class:'form-control'} %>
+        </div>
+      </div>
+  </div>
+  <br>
+  <div class="field">
+     <div class="form-group">
+        <%= f.label :anotacion,class: 'col-sm-1 control-label' %>
+        <div class="col-sm-5">
+          <%= f.text_field :anotacion,class:'form-control',placeholder: 'Ingrese Anotacion Pertinente' %>
+        </div>
+      </div>
+  </div>
+  <br>
+   <div class="field">
+     <div class="form-group">
+        <%= f.label :Boleta,class: 'col-sm-1 control-label' %>
+        <div class="col-sm-5">
+          <%= f.number_field :boleta,class:'form-control',placeholder: 'Numero Boleta' %>
+        </div>
+      </div>
+  </div>
+  <br>
+  <div class="field">
+    <div class="form-group">
+    <%= label_tag :'Medio Pago',nil,class:'col-sm-1 control-label' %>
+      <div class="col-sm-5">
+        <%= f.select( :medio_pago,options_for_select([['Efectivo','1'],['RedCompra','2'],['Tarjeta Bancaria','3'],['Cheque','4']]),:class=>'form-control')  %>
+
+      </div>
+    </div>
+  </div>
+  <br><br><br>
+ 
+  <div class="actions">
+    <%= f.submit('Guardar',class: 'btn btn-default') %>
+  </div>
+<% end %>
+
+
+
+ 
+  
+ 
+
+  
