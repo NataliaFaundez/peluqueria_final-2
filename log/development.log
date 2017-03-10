@@ -4629,3 +4629,441 @@ Processing by DashboardController#main as HTML
 Completed 200 OK in 62ms (Views: 59.5ms | ActiveRecord: 0.0ms)
 
 
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2017-03-10 16:05:00 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"2M2kHUWEa7Q1PN3nSUsh6NUjmrVhYbpft5LUphPx+9+GFRRa3BYRCrWQg0aT9RzZ468vTDgOwwLnTe7T4CrxMg=="}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 5 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 711ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-10 16:05:01 -0300
+Processing by DashboardController#unregistred as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2017-03-10 16:05:01 -0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/sessions/new.html.erb within layouts/application (17.4ms)
+  Rendered layouts/_menu.html.erb (1.3ms)
+Completed 200 OK in 365ms (Views: 363.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2017-03-10 16:07:46 -0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3xnvlnsGr2BT3lNAuQ5IFL1ruf4vWHkjaI8HQkrp4WsDaSkCBSv0CQrzG60papoGLiTSb/NqTUd2KA+p4q48lg==", "user"=>{"email"=>"natalia@natalia.cl", "password"=>"[FILTERED]"}, "commit"=>"Ingresar"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`email` = 'natalia@natalia.cl' ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE `users` SET `current_sign_in_at` = '2017-03-10 19:07:46', `last_sign_in_at` = '2017-03-10 19:02:39', `sign_in_count` = 9, `updated_at` = '2017-03-10 19:07:46' WHERE `users`.`id` = 2[0m
+  [1m[35m (37.4ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 365ms (ActiveRecord: 38.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-03-10 16:07:46 -0300
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+Processing by DashboardController#main as HTML
+  Rendering dashboard/main.html.erb within layouts/application
+  Rendered dashboard/main.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_menu.html.erb (1.5ms)
+Completed 200 OK in 36ms (Views: 35.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/clients" for 127.0.0.1 at 2017-03-10 16:07:49 -0300
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering clients/index.html.erb within layouts/application
+  Rendered clients/_search.html.erb (2.5ms)
+  [1m[36mClient Load (0.8ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` LIMIT 20 OFFSET 0[0m
+  Rendered clients/index.html.erb within layouts/application (12.4ms)
+  Rendered layouts/_menu.html.erb (2.0ms)
+Completed 200 OK in 67ms (Views: 51.7ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/clients/new" for 127.0.0.1 at 2017-03-10 16:07:52 -0300
+Processing by ClientsController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering clients/new.html.erb within layouts/application
+  Rendered clients/_form.html.erb (11.3ms)
+  Rendered clients/new.html.erb within layouts/application (13.9ms)
+  Rendered layouts/_menu.html.erb (1.5ms)
+Completed 200 OK in 84ms (Views: 54.5ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/clients" for 127.0.0.1 at 2017-03-10 16:08:17 -0300
+Processing by ClientsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3Q+wlN/iZLnDAgkFkbwgNMdy5R/7L2Bgw7rXBPpAwzDgtl6ezMoiwboFQ9F+w9tmIOBn0tVLJ2T0bKl3lx2ruQ==", "client"=>{"nombre"=>"qweqweqweqweqwe", "apellido"=>"qweqe", "rut"=>"qweqwe", "email"=>"qwe@qewq.cl", "telefono"=>"34315"}, "commit"=>"Enviar"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `clients` WHERE `clients`.`rut` = BINARY 'qweqwe' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+Redirected to http://localhost:3000/clients
+Completed 302 Found in 23ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/clients" for 127.0.0.1 at 2017-03-10 16:08:17 -0300
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering clients/index.html.erb within layouts/application
+  Rendered clients/_search.html.erb (1.0ms)
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` LIMIT 20 OFFSET 0[0m
+  Rendered clients/index.html.erb within layouts/application (3.8ms)
+  Rendered layouts/_menu.html.erb (1.5ms)
+Completed 200 OK in 44ms (Views: 40.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/clients/1/edit" for 127.0.0.1 at 2017-03-10 16:08:34 -0300
+Processing by ClientsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mClient Load (0.7ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` WHERE `clients`.`id` = 1 LIMIT 1[0m
+Completed 404 Not Found in 9ms (ActiveRecord: 1.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Client with 'id'=1):
+  
+app/controllers/clients_controller.rb:83:in `set_client'
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (5.1ms)
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (44.5ms)
+Started GET "/clients/1/show" for 127.0.0.1 at 2017-03-10 16:08:45 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/clients/1/show"):
+  
+actionpack (5.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.2) lib/rails/engine.rb:522:in `call'
+puma (3.7.1) lib/puma/configuration.rb:232:in `call'
+puma (3.7.1) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.1) lib/puma/server.rb:415:in `process_client'
+puma (3.7.1) lib/puma/server.rb:275:in `block in run'
+puma (3.7.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered collection of /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [62 times] (29.9ms)
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (3.6ms)
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.8ms)
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (87.8ms)
+Started GET "/clients/2/show" for 127.0.0.1 at 2017-03-10 16:08:55 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/clients/2/show"):
+  
+actionpack (5.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.2) lib/rails/engine.rb:522:in `call'
+puma (3.7.1) lib/puma/configuration.rb:232:in `call'
+puma (3.7.1) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.1) lib/puma/server.rb:415:in `process_client'
+puma (3.7.1) lib/puma/server.rb:275:in `block in run'
+puma (3.7.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.4ms)
+  Rendered collection of /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [62 times] (27.3ms)
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.9ms)
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (84.5ms)
+Started GET "/clients/3/show" for 127.0.0.1 at 2017-03-10 16:09:03 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/clients/3/show"):
+  
+actionpack (5.0.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.4.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.4.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.4.0) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.2) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.2) lib/rails/engine.rb:522:in `call'
+puma (3.7.1) lib/puma/configuration.rb:232:in `call'
+puma (3.7.1) lib/puma/server.rb:578:in `handle_request'
+puma (3.7.1) lib/puma/server.rb:415:in `process_client'
+puma (3.7.1) lib/puma/server.rb:275:in `block in run'
+puma (3.7.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered collection of /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [62 times] (24.4ms)
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.2ms)
+  Rendering /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /home/natalia/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (76.7ms)
+  [1m[36mClient Load (0.6ms)[0m  [1m[34mSELECT `clients`.* FROM `clients`[0m
+Started GET "/clients/new" for 127.0.0.1 at 2017-03-10 16:16:49 -0300
+Processing by ClientsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering clients/new.html.erb within layouts/application
+  Rendered clients/_form.html.erb (6.2ms)
+  Rendered clients/new.html.erb within layouts/application (7.5ms)
+  Rendered layouts/_menu.html.erb (1.9ms)
+Completed 200 OK in 92ms (Views: 45.1ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/clients" for 127.0.0.1 at 2017-03-10 16:17:02 -0300
+Processing by ClientsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5bldW1SXhkgo7a0r9uNEUGf1rUD4YKb5R5mipN2Xfa/YALNRR7/AMFHq5/8ZnL8CgGcvjdYE4f1wT9zXsMoVJg==", "client"=>{"nombre"=>"sdf", "apellido"=>"sdfd", "rut"=>"2344", "email"=>"sdf@ddf.cl", "telefono"=>"245"}, "commit"=>"Enviar"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Exists (1.2ms)[0m  [1m[34mSELECT  1 AS one FROM `clients` WHERE `clients`.`rut` = BINARY '2344' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering clients/new.html.erb within layouts/application
+  Rendered clients/_form.html.erb (6.9ms)
+  Rendered clients/new.html.erb within layouts/application (8.4ms)
+  Rendered layouts/_menu.html.erb (2.7ms)
+Completed 200 OK in 65ms (Views: 53.1ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/clients" for 127.0.0.1 at 2017-03-10 16:17:10 -0300
+Processing by ClientsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"duK27QE7HO07I+CI2jizFQBsPJnzdOtZnYpeCRiwpsXoRPM/r0DnS6YixaMWlIumgWh40EP3ZocV8/JW16jVtg==", "client"=>{"nombre"=>"sdf", "apellido"=>"sdfd", "rut"=>"2344sdf-2", "email"=>"sdf@ddf.cl", "telefono"=>"245"}, "commit"=>"Enviar"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `clients` WHERE `clients`.`rut` = BINARY '2344sdf-2' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  Rendering clients/new.html.erb within layouts/application
+  Rendered clients/_form.html.erb (9.8ms)
+  Rendered clients/new.html.erb within layouts/application (11.7ms)
+  Rendered layouts/_menu.html.erb (3.3ms)
+Completed 200 OK in 75ms (Views: 65.8ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/clients" for 127.0.0.1 at 2017-03-10 16:17:22 -0300
+Processing by ClientsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"R8yUkzdGugvWJuO0mmWcj5MtgYzjWhM14x//7AGnnlPZatFBmT1BrUsnxp9WyaQ8EinFxVPZnutrZlOzzr/tIA==", "client"=>{"nombre"=>"sdf", "apellido"=>"sdfd", "rut"=>"17255894-1", "email"=>"sdf@ddf.cl", "telefono"=>"245"}, "commit"=>"Enviar"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `clients` WHERE `clients`.`rut` = BINARY '17255894-1' LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO `clients` (`nombre`, `apellido`, `rut`, `email`, `telefono`, `created_at`, `updated_at`) VALUES ('sdf', 'sdfd', '17255894-1', 'sdf@ddf.cl', 245, '2017-03-10 19:17:22', '2017-03-10 19:17:22')[0m
+  [1m[35m (34.8ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/clients/1
+Completed 302 Found in 51ms (ActiveRecord: 36.6ms)
+
+
+Started GET "/clients/1" for 127.0.0.1 at 2017-03-10 16:17:22 -0300
+Processing by ClientsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mClient Load (0.5ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` WHERE `clients`.`id` = 1 LIMIT 1[0m
+  Rendering clients/show.html.erb within layouts/application
+  [1m[36mService Load (0.3ms)[0m  [1m[34mSELECT `services`.* FROM `services`[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`contador` = 0 AND `users`.`admin` = 0 AND `users`.`caja` = 0[0m
+  Rendered records/_form.html.erb (34.0ms)
+  [1m[36mRecord Load (0.4ms)[0m  [1m[34mSELECT `records`.* FROM `records` WHERE `records`.`client_id` = 1[0m
+  Rendered clients/show.html.erb within layouts/application (38.5ms)
+  Rendered layouts/_menu.html.erb (1.6ms)
+Completed 200 OK in 124ms (Views: 79.2ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/clients/1/edit" for 127.0.0.1 at 2017-03-10 16:17:52 -0300
+Processing by ClientsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` WHERE `clients`.`id` = 1 LIMIT 1[0m
+  Rendering clients/edit.html.erb within layouts/application
+  Rendered clients/_form.html.erb (8.1ms)
+  Rendered clients/edit.html.erb within layouts/application (10.3ms)
+  Rendered layouts/_menu.html.erb (1.6ms)
+Completed 200 OK in 68ms (Views: 62.7ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/clients/1" for 127.0.0.1 at 2017-03-10 16:17:54 -0300
+Processing by ClientsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PvcGsHo0bKP4JkIHFN4yRK5MJeqaCpn3odYpyNdFLtkWAUQ5FhtOyYrj+CeA51e6m5WeoFQwQIaMQp/5Qr9z+Q==", "client"=>{"nombre"=>"sdf", "apellido"=>"sdfd", "rut"=>"17255894-1", "email"=>"sdf@ddf.cl", "telefono"=>"245"}, "commit"=>"Enviar", "id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` WHERE `clients`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM `clients` WHERE `clients`.`rut` = BINARY '17255894-1' AND (`clients`.`id` != 1) LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/clients/1
+Completed 302 Found in 12ms (ActiveRecord: 1.5ms)
+
+
+Started GET "/clients/1" for 127.0.0.1 at 2017-03-10 16:17:54 -0300
+Processing by ClientsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` WHERE `clients`.`id` = 1 LIMIT 1[0m
+  Rendering clients/show.html.erb within layouts/application
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT `services`.* FROM `services`[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`contador` = 0 AND `users`.`admin` = 0 AND `users`.`caja` = 0[0m
+  Rendered records/_form.html.erb (8.7ms)
+  [1m[36mRecord Load (0.2ms)[0m  [1m[34mSELECT `records`.* FROM `records` WHERE `records`.`client_id` = 1[0m
+  Rendered clients/show.html.erb within layouts/application (12.2ms)
+  Rendered layouts/_menu.html.erb (1.6ms)
+Completed 200 OK in 55ms (Views: 49.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/services" for 127.0.0.1 at 2017-03-10 16:18:01 -0300
+Processing by ServicesController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering services/index.html.erb within layouts/application
+  [1m[36mService Load (0.3ms)[0m  [1m[34mSELECT  `services`.* FROM `services` LIMIT 20 OFFSET 0[0m
+  Rendered services/index.html.erb within layouts/application (3.9ms)
+  Rendered layouts/_menu.html.erb (1.5ms)
+Completed 200 OK in 61ms (Views: 55.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/services/new" for 127.0.0.1 at 2017-03-10 16:18:04 -0300
+Processing by ServicesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering services/new.html.erb within layouts/application
+  Rendered services/_form.html.erb (3.4ms)
+  Rendered services/new.html.erb within layouts/application (20.1ms)
+  Rendered layouts/_menu.html.erb (1.5ms)
+Completed 200 OK in 84ms (Views: 62.0ms | ActiveRecord: 1.7ms)
+
+
+Started POST "/services" for 127.0.0.1 at 2017-03-10 16:18:11 -0300
+Processing by ServicesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+vzDe3sOKl5hlpUkFFxAF9IefuHkiS1dVd6kegVI3k8aq5tXWfaPeMG0U2qWh4TFjcHANvCknBPHQPFHrn1ksQ==", "service"=>{"nombre"=>"sdffg", "valor"=>"1234"}, "commit"=>"Enviar"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mService Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `services` WHERE `services`.`nombre` = BINARY 'sdffg' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `services` (`nombre`, `valor`, `created_at`, `updated_at`) VALUES ('sdffg', 1234, '2017-03-10 19:18:11', '2017-03-10 19:18:11')[0m
+  [1m[35m (87.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/services/2
+Completed 302 Found in 102ms (ActiveRecord: 89.0ms)
+
+
+Started GET "/services/2" for 127.0.0.1 at 2017-03-10 16:18:12 -0300
+Processing by ServicesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mService Load (0.3ms)[0m  [1m[34mSELECT  `services`.* FROM `services` WHERE `services`.`id` = 2 LIMIT 1[0m
+  Rendering services/show.html.erb within layouts/application
+  Rendered services/show.html.erb within layouts/application (0.9ms)
+  Rendered layouts/_menu.html.erb (1.5ms)
+Completed 200 OK in 40ms (Views: 34.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/clients" for 127.0.0.1 at 2017-03-10 16:18:15 -0300
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering clients/index.html.erb within layouts/application
+  Rendered clients/_search.html.erb (1.7ms)
+  [1m[36mClient Load (0.4ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` LIMIT 20 OFFSET 0[0m
+  Rendered clients/index.html.erb within layouts/application (7.4ms)
+  Rendered layouts/_menu.html.erb (1.5ms)
+Completed 200 OK in 56ms (Views: 51.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/clients/1" for 127.0.0.1 at 2017-03-10 16:18:18 -0300
+Processing by ClientsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mClient Load (0.4ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` WHERE `clients`.`id` = 1 LIMIT 1[0m
+  Rendering clients/show.html.erb within layouts/application
+  [1m[36mService Load (0.5ms)[0m  [1m[34mSELECT `services`.* FROM `services`[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`contador` = 0 AND `users`.`admin` = 0 AND `users`.`caja` = 0[0m
+  Rendered records/_form.html.erb (15.5ms)
+  [1m[36mRecord Load (0.2ms)[0m  [1m[34mSELECT `records`.* FROM `records` WHERE `records`.`client_id` = 1[0m
+  Rendered clients/show.html.erb within layouts/application (22.6ms)
+  Rendered layouts/_menu.html.erb (1.5ms)
+Completed 200 OK in 74ms (Views: 65.3ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/records" for 127.0.0.1 at 2017-03-10 16:18:50 -0300
+Processing by RecordsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Lg/Ko0bi6mwtpEIYvuFLBEbGkTV1dczrBhPowfFgGjGy2zgDVQTphsqmM2+9syaiq4WI6/xftJkfB6sM9bp98A==", "record"=>{"client_id"=>"1", "service_id"=>"2", "user_id"=>"5", "anotacion"=>"lala1", "boleta"=>"1", "medio_pago"=>"2"}, "commit"=>"Guardar"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mClient Load (0.6ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` WHERE `clients`.`id` = 1 LIMIT 1[0m
+  [1m[36mService Load (0.4ms)[0m  [1m[34mSELECT  `services`.* FROM `services` WHERE `services`.`id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  `services`.* FROM `services` WHERE `services`.`id` = 2 LIMIT 1[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO `records` (`client_id`, `service_id`, `user_id`, `anotacion`, `valor`, `comision`, `boleta`, `medio_pago`, `created_at`, `updated_at`) VALUES (1, 2, 5, 'lala1', 1234, 370, 1, '2', '2017-03-10 19:18:50', '2017-03-10 19:18:50')[0m
+  [1m[35m (33.9ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/clients
+Completed 302 Found in 141ms (ActiveRecord: 36.6ms)
+
+
+Started GET "/clients" for 127.0.0.1 at 2017-03-10 16:18:50 -0300
+Processing by ClientsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendering clients/index.html.erb within layouts/application
+  Rendered clients/_search.html.erb (1.0ms)
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` LIMIT 20 OFFSET 0[0m
+  Rendered clients/index.html.erb within layouts/application (4.3ms)
+  Rendered layouts/_menu.html.erb (1.6ms)
+Completed 200 OK in 44ms (Views: 39.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/clients/1" for 127.0.0.1 at 2017-03-10 16:18:53 -0300
+Processing by ClientsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mClient Load (0.2ms)[0m  [1m[34mSELECT  `clients`.* FROM `clients` WHERE `clients`.`id` = 1 LIMIT 1[0m
+  Rendering clients/show.html.erb within layouts/application
+  [1m[36mService Load (4.5ms)[0m  [1m[34mSELECT `services`.* FROM `services`[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`contador` = 0 AND `users`.`admin` = 0 AND `users`.`caja` = 0[0m
+  Rendered records/_form.html.erb (14.4ms)
+  [1m[36mRecord Load (1.6ms)[0m  [1m[34mSELECT `records`.* FROM `records` WHERE `records`.`client_id` = 1[0m
+  [1m[36mService Load (0.2ms)[0m  [1m[34mSELECT  `services`.* FROM `services` WHERE `services`.`id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 5 LIMIT 1[0m
+  Rendered clients/show.html.erb within layouts/application (26.2ms)
+  Rendered layouts/_menu.html.erb (1.5ms)
+Completed 200 OK in 72ms (Views: 58.6ms | ActiveRecord: 8.0ms)
+
+
