@@ -2,11 +2,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                       <% if user_signed_in? %>
-                        <li>
-                            <%= link_to root_path do %>
-                            <i class="fa fa-dashboard fa-fw"></i> Administracion
-                            <% end %>
-                        </li>
+                      
                         <% if (!current_user.contador = false) %>
                         <li>
                             <%= link_to clients_path do %>
@@ -36,15 +32,8 @@
                             <% end %>
                         </li>
                          
-                        <li>
-                            <%= link_to 'Cerrar sesión' , destroy_user_session_path , method: :delete %>
-                            
-                        </li>
-                         <li>
-                            <%= link_to root_path do %>
-                            <i class="fa "></i>Usuario: <%= current_user.nombre%>
-                            <% end %>
-                        </li>
+                       
+                         
                         <% else %>
                          <li>
                             <%= link_to "Inicio Sesion",new_user_session_path%>
