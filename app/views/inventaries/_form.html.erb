@@ -24,7 +24,7 @@
      <div class="form-group">
         <%= f.label :codigo,class: 'col-sm-1 control-label' %>
         <div class="col-sm-5">
-          <%= f.text_field :codigo,class:'form-control',placeholder: 'MM-1111'%>
+          <%= f.text_field :codigo,class:'form-control',placeholder: '1111'%>
         </div>
       </div>
   </div>
@@ -33,6 +33,14 @@
         <%= f.label :cantidad,class: 'col-sm-1 control-label' %>
         <div class="col-sm-5">
           <%= f.number_field :cantidad,class:'form-control',placeholder: 'Númerico'%>
+        </div>
+      </div>
+  </div>
+    <div class="field">
+     <div class="form-group">
+        <%= f.label :precio,class: 'col-sm-1 control-label' %>
+        <div class="col-sm-5">
+          <%= f.number_field :precio,class:'form-control' ,placeholder: 'Ingrese Precio Producto'%>
         </div>
       </div>
   </div>

@@ -16,6 +16,7 @@
       <th>Nombre</th>
       <th>Codigo</th>
       <th>Cantidad</th>
+      <th>Precio</th>
       <th>Editar</th>
       <th>Borrar</th>
     </tr>
@@ -28,6 +29,7 @@
         <td><%= inventary.nombre %></td>
         <td><%= inventary.codigo %></td>
         <td><%= inventary.cantidad %></td>
+        <td><%= inventary.precio %></td>
         <td><%= link_to 'Editar', edit_inventary_path(inventary) %></td>
         <td><%= link_to 'Borrar', inventary, method: :delete, data: { confirm: 'Esta Seguro?' } %></td>
       </tr>

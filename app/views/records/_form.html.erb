@@ -39,24 +39,9 @@
       </div>
   </div>
   <br>
-   <div class="field">
-     <div class="form-group">
-        <%= f.label :Boleta,class: 'col-sm-1 control-label' %>
-        <div class="col-sm-5">
-          <%= f.number_field :boleta,class:'form-control',placeholder: 'Numero Boleta' %>
-        </div>
-      </div>
-  </div>
+  
   <br>
-  <div class="field">
-    <div class="form-group">
-    <%= label_tag :'Medio Pago',nil,class:'col-sm-1 control-label' %>
-      <div class="col-sm-5">
-        <%= f.select( :medio_pago,options_for_select([['Efectivo','1'],['RedCompra','2'],['Tarjeta Bancaria','3'],['Cheque','4']]),:class=>'form-control')  %>
-
-      </div>
-    </div>
-  </div>
+ 
   <br><br><br>
  
   <div class="actions">

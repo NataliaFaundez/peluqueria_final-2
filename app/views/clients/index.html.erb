@@ -5,7 +5,12 @@
     <%= link_to 'Nuevo', new_client_path %>
   </div>
 
-<div class="row">
+<div class="">
+  <label></label>
+    <%= render('clients/search', client: @client )%>
+  </div>
+
+  <div class="row">
   <% render ('clients/search') %>
 </div>
 <table class="table table-striped">

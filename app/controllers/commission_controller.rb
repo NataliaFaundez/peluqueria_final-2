@@ -13,7 +13,7 @@ class CommissionController < ApplicationController
     else
       session[:user_id] = params[:user_id] 
     end
-  	@records = Record.where(:user_id =>session[:user_id] , :pagado => true, :contador => false)
+  	@records = Record.where(:user_id =>session[:user_id] , :pagado => true)
     respond_to do |format|
       format.html
       format.xlsx

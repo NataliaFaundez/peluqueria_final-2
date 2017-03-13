@@ -3,41 +3,48 @@
                     <ul class="nav" id="side-menu">
                       <% if user_signed_in? %>
                       
-                        <% if (!current_user.contador = false) %>
+                        <% if (current_user.admin or current_user.caja or current_user.estilista) %>
                         <li>
                             <%= link_to clients_path do %>
                             <i class="fa fa-user fa-fw"></i>Clientes
                             <% end %>
                         </li>
                         <%end%>
+                        <% if (current_user.admin or current_user.caja or current_user.estilista) %>
                         <li>
                             <%= link_to services_path do %>
                             <i class="fa fa-file fa-fw"></i>Servicios
                             <% end %>
                         </li>
-
+                        <%end%>
+                        <% if (current_user.admin or current_user.caja) %>
                          <li>
                             <%= link_to inventaries_path do %>
                             <i class="fa fa-sitemap fa-fw"></i>Inventario
                             <% end %>
                         </li>
+                        <%end%>
+                        <% if (current_user.admin or current_user.contador) %>
                         <li>
                             <%= link_to commission_index_path do %>
                             <i class="fa fa-money fa-fw"></i>Comisiones
                             <% end %>
                         </li>
+                        <%end%>
+                        <% if (current_user.admin or current_user.caja) %>
                         <li>
                             <%= link_to users_index_path do %>
                             <i class="fa fa-table fa-fw"></i>Estilistas
                             <% end %>
                         </li>
+                        <%end%>
                          
                        
                          
                         <% else %>
                          <li>
                             <%= link_to "Inicio Sesion",new_user_session_path%>
-                            
+                            <%= link_to "Registro Sesion",new_user_registration_path%>
                         </li>
                        
                         

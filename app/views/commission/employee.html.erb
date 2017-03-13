@@ -1,14 +1,16 @@
 <table class="table">
 <thead>
+  <th>Estilista</th>
   <th>Servicio</th>
   <th>Fecha</th>
   <th>Valor</th>
   <th>Comision</th>
-  <th>Total</th>
+  <th>Total Acumulado</th>
 </thead>
 <tbody>
     <% @records.each do |record| %>
     <tr>
+      <td><%=record.user.nombre %></td>
       <td><%=record.service.nombre %></td>
       <td><%=record.created_at %></td>
       <td><%=record.valor %></td>

@@ -12,7 +12,7 @@ class ClientsController < ApplicationController
     @clients = Client.all.paginate(page: params[:page],per_page:20)
   end
 
-  def buscar
+  def Buscar
     #@client = Client.find(params[:rut])
   end
 
