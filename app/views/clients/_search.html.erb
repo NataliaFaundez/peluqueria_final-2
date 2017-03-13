@@ -1,13 +1,20 @@
 <div class="col-md-12">
   <h2>Busqueda Clientes Rut</h2>
-    <%= form_tag clients_buscar_path, method: :get , class:'form-horizontal' do %>
-      <div class="form-group">
-    <%= text_field_tag :rut, params[:rut], class: "form-control", placeholder: "ingrese rut" %>
-  </div>
+   
+<%= form_tag clients_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :rut => nil %>
+  </p>
+<% end %>
 
-      <div class="actions">
-        <%= submit_tag "Buscar", name: nil, class: "btn btn-primary btn-md" %>
-      </div>
-      </div>
-    <% end %>
+<%= form_tag clients_path, :method => 'get' do %>
+  <%= hidden_field_tag :direction, params[:direction] %>
+  <%= hidden_field_tag :sort, params[:sort] %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
   </div>

@@ -32,6 +32,7 @@ gem 'i18n'
 gem 'faker'
 gem 'axlsx_rails'
 gem 'mysql2'
+gem 'filterrific'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -69,6 +69,7 @@ GEM
     faker (1.7.3)
       i18n (~> 0.5)
     ffi (1.9.18)
+    filterrific (2.1.2)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     htmlentities (4.3.4)
@@ -185,6 +186,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   faker
+  filterrific
   i18n
   jbuilder (~> 2.5)
   jquery-rails

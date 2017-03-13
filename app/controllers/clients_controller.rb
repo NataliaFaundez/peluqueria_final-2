@@ -9,7 +9,7 @@ class ClientsController < ApplicationController
   $titulo = 'Clientes'  
 
   def index
-    @clients = Client.all.paginate(page: params[:page],per_page:20)
+   @clients = Client.search(params[:search]).paginate(:per_page => 5, :page => params[:page])
   end
 
   def Buscar

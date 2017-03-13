@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       if (current_user.contador?)
         redirect_to root_path
       else (current_user.caja)
-      	if(current_user.admin?)
+      	if(current_user.admin)
       	
       	else
       		redirect_to root_path
