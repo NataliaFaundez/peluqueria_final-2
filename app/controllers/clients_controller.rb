@@ -9,7 +9,7 @@ class ClientsController < ApplicationController
   $titulo = 'Clientes'  
 
   def index
-   @clients = Client.search(params[:search]).paginate(:per_page => 5, :page => params[:page])
+   @clients = Client.search(params[:search]).paginate(:per_page => 10, :page => params[:page])
   end
 
   def Buscar
@@ -89,9 +89,11 @@ class ClientsController < ApplicationController
     end
 
     def validar
-      if (current_user.contador?)
-        redirect_to root_path
-      end
+      if (current_user.admin or current_user.caja or current_user.estilista)
+        
+        else
+          redirect_to root_path
+        end
     end
 
 end

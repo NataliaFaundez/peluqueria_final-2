@@ -4,12 +4,7 @@
   <label>Crear Producto:</label>
     <%= link_to 'Nuevo Producto', new_inventary_path %>
   </div>
-  <br>
-<div class="">
-  <h3><%= link_to 'Obtener en Excel', inventaries_path(format: :xlsx) %></h3>
-</div>
-<br>
-
+<div class="col-md-12">
 <h2>Busqueda Productos</h2>
    
 <%= form_tag inventaries_path, :method => 'get' do %>
@@ -20,6 +15,7 @@
     <%= submit_tag "Search", :nombre => nil %>
   </p>
 <% end %>
+  </div>
 
 <table class="table table-striped">
   <thead>
@@ -48,6 +44,11 @@
     <% end %>
   </tbody>
 </table>
+
+<div class="">
+  <h3><%= link_to 'Obtener en Excel', inventaries_path(format: :xlsx) %></h3>
+</div>
+<br>
 
 <br>
 

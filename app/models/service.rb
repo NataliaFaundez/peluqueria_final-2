@@ -1,7 +1,7 @@
 class Service < ApplicationRecord
-	has_many :records
+	has_many :records , dependent: :destroy
 	validates :nombre,uniqueness: true
-	 validates :nombre, :presence => {:message => "Usted debe ingresar un nombre"}, length: {minimum: 2, maximum: 50, :message => "El nombre debe tener entre 2 y 50 caracteres"}
+	 validates :nombre, :presence => {:message => "Usted debe ingresar un nombre"}, length: {minimum: 2, maximum: 150, :message => "El nombre debe tener entre 2 y 50 caracteres"}
   #validates :nombre, length: { in: 3..20 } no se necesita, ya esta validado el largo
   validates :nombre, uniqueness: {case_sensitive: false ,message: "ya esta registrado"}
   

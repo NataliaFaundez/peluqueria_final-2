@@ -84,14 +84,10 @@ class InventariesController < ApplicationController
       params.require(:inventary).permit(:nombre, :codigo, :cantidad, :precio, :estado, :marca)
     end
    def validar
-      if (current_user.contador?)
-        redirect_to root_path
-      else current_user.estilista?
-        if current_user.admin?
-        elsif current_user.caja?
+      if (current_user.admin or current_user.caja or current_user.estilista)
+        
         else
-          redirect_to root_path
+          redirect_to root_path 
         end
-end
     end
 end

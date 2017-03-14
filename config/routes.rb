@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :inventaries
   resources :services
   resources :clients
+  resources :users, :except => [:show, :create, :update]
+  
 
   devise_for :users
 
@@ -20,7 +22,8 @@ Rails.application.routes.draw do
   unauthenticated :user do
     root 'welcome#index'
   end
-
+  
+  get 'usuarios' => 'users#index'
   get 'nuevo' => 'users#nuevo'
   get 'users/index'
   get 'commission/pagar'

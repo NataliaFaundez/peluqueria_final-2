@@ -20,11 +20,11 @@
   <% end %>
 </tbody>
 </table>
-<hr>
-<h3><%= link_to 'Excel', commission_employee_path( format: :xlsx) %></h3>
-<hr>
-<h3><%= link_to 'Pagar', commission_pagar_path(user_id: params[:user_id]) %></h3>
 
-<hr>
+<h3><%= link_to 'Exportar a Excel', commission_employee_path( format: :xlsx) %></h3>
+
+<!--<h3><#%= link_to 'Pagar', commission_pagar_path(user_id: params[:user_id]) %></h3>
+-->
+
 <h3><%= link_to 'Volver', commission_index_path %></h3>
 </div>
