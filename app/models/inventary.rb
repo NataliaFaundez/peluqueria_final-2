@@ -24,5 +24,14 @@ class Inventary < ApplicationRecord
 	#el nombre del producto no tiene que ser solo letras, ya que hay productos con nombre de numeros o signos
   validates :cantidad, length: { in: 1..4, message: "la cantidad debe tener entre 1 y 4 caracteres"}
   validates :marca, length: { in: 1..50, message: "la marca debe tener entre 1 y 50 caracteres"}
+  
+  def self.search(search)
+    if search
+      where('nombre LIKE ?', "%#{search}%") or where('marca LIKE ?', "%#{search}%")
+    else
+      where(nil)
+    end
+    
+  end
 
 end

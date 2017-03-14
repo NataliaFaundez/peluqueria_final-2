@@ -1,19 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-  
+   <% if (!current_user.estilista) %>
   <div class="">
   <label>Crear Servicio:</label>
     <%= link_to 'Nuevo Servicio', new_service_path %>
   </div>
+   <%end%>
   <br>
+  
+  <div class="col-md-12">
+  <h2>Busqueda Servicios</h2>
+   
+<%= form_tag services_path, :method => 'get' do %>
+  <%= hidden_field_tag :direction, params[:direction] %>
+  <%= hidden_field_tag :sort, params[:sort] %>
+  <p>
+    <%= text_field_tag :search, params[:search], placeholder: 'Nombre de Servicio' %>
+    <%= submit_tag "Search", :nombre => nil %>
+  </p>
+<% end %>
+
+  </div>
 
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Nombre</th>
       <th>Valor</th>
+      <% if (!current_user.estilista) %>
       <th>Editar</th>
       <th>Borrar</th>
+      <%end%>
       </tr>
   </thead>
 
@@ -22,8 +39,10 @@
       <tr>
         <td><%= service.nombre %></td>
         <td><%= service.valor %></td>
+        <% if (!current_user.estilista) %>
         <td><%= link_to 'Editar', edit_service_path(service) %></td>
         <td><%= link_to 'Borrar', service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	$titulo = 'Estilistas'
 
 	def index
-		@users = User.all
+		@users = User.all.order('created_at DESC').where( :contador => false,:admin => false, :caja => false)
 	end 
 
 	

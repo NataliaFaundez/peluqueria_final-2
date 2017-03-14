@@ -11,4 +11,13 @@ class Service < ApplicationRecord
   validates :valor, numericality: { :greater_than_or_equal_to => 0, message: "no se permiten números negativos"}
   validates :valor, numericality: {only_integer: true, message: "solo se permiten números enteros"}
   validates :valor, length: { in: 4..7, message: "el valor debe tener entre 4 y 7 caracteres"}
+  
+  def self.search(search)
+    if search
+      where('nombre LIKE ?', "%#{search}%")
+    else
+      where(nil)
+    end
+ end
+  
 end

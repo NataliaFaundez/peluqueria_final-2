@@ -1,5 +1,5 @@
 class Client < ApplicationRecord
-	has_many :records
+	has_many :records, dependent: :destroy
 	validates :rut,uniqueness: true, rut: true
 	validates :telefono, numericality: { :greater_than_or_equal_to => 0, message: "no se permiten telefono que partan con 0"}
   validates :telefono, numericality: {only_integer: true, message: "solo se permiten números enteros"}

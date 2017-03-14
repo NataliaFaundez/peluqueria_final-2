@@ -9,6 +9,18 @@
   <h3><%= link_to 'Obtener en Excel', inventaries_path(format: :xlsx) %></h3>
 </div>
 <br>
+
+<h2>Busqueda Productos</h2>
+   
+<%= form_tag inventaries_path, :method => 'get' do %>
+  <%= hidden_field_tag :direction, params[:direction] %>
+  <%= hidden_field_tag :sort, params[:sort] %>
+  <p>
+    <%= text_field_tag :search, params[:search], placeholder: 'Ingrese Nombre Producto' %>
+    <%= submit_tag "Search", :nombre => nil %>
+  </p>
+<% end %>
+
 <table class="table table-striped">
   <thead>
     <tr>

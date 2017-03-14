@@ -7,7 +7,7 @@ class ServicesController < ApplicationController
   # GET /services
   # GET /services.json
   def index
-    @services = Service.all.paginate(page: params[:page],per_page:20)
+    @services = Service.search(params[:search]).paginate(:per_page => 5, :page => params[:page])
   end
 
   # GET /services/1
@@ -76,15 +76,10 @@ class ServicesController < ApplicationController
     end
 
     def validar
-      if (current_user.contador?)
-        redirect_to root_path
-      else current_user.estilista?
-        if current_user.admin?
-        elsif current_user.caja?
+      if (current_user.admin or current_user.caja or current_user.estilista)
+        
         else
           redirect_to root_path
-        end
-
+      end
     end
-  end
 end

@@ -7,7 +7,7 @@ class InventariesController < ApplicationController
   # GET /inventaries
   # GET /inventaries.json
   def index
-    @inventaries = Inventary.all.order('created_at DESC')
+    @inventaries = Inventary.search(params[:search]).paginate(:per_page => 10, :page => params[:page])
     #@inventariesall = Inventary.order('created_at DESC')
     respond_to do |format|
       format.html
