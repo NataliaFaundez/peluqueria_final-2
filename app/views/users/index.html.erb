@@ -2,7 +2,8 @@
 
   <div class="">
   <label>Crear Estilista:</label>
-    <%= link_to "Registro Sesion", new_user_registration_path %>
+  <%@nuevo_usuario = 1%>
+    <%= link_to "Nuevo", nuevo_url%>
 
   </div>
 
@@ -17,6 +18,7 @@
       <th>Estilista</th>
       <th>Contador</th>
       <th>Editar</th>
+      <th>Borrar</th>
     </tr>
   </thead>
   <tbody>
@@ -29,7 +31,8 @@
       <td><%= user.caja? %></td>
       <td><%= user.estilista? %></td>
       <td><%= user.contador? %></td>
-      <td><%= link_to 'edit', edit_user_registration_path %></td>
+      <td><%= link_to 'editar', edit_user_registration_path %></td>
+      <td><%= link_to 'Borrar'%></td>
     </tr>
 
     <% end %>

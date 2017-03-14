@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'welcome/index'
+
   get 'commission/index'
 
   get 'commission/employee'
@@ -16,9 +18,10 @@ Rails.application.routes.draw do
   end
   
   unauthenticated :user do
-    root 'dashboard#unregistred'
+    root 'welcome#index'
   end
 
+  get 'nuevo' => 'users#nuevo'
   get 'users/index'
   get 'commission/pagar'
   get 'inventaries/excel'

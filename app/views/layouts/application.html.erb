@@ -5,10 +5,11 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    <link rel="stylesheet" type="text/css" href="app/assets/stylesheets/layout.scss">
   </head>
 
  <body>
+    
 
     <div id="wrapper">
 
@@ -36,7 +37,7 @@
                     <ul class="dropdown-menu dropdown-user">
                     <% if user_signed_in?%>
                         <li>
-                        <%= link_to "Cerrar sesión",destroy_user_session_path,method: :delete,class:''%>
+                        <%= link_to "Cerrar sesión",destroy_user_session_path,method: :delete%>
                         </li>
                         <% else%>
                         <%= link_to "Inicio Sesion",new_user_session_path%>
