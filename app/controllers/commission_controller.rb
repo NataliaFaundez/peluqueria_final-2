@@ -3,7 +3,7 @@ class CommissionController < ApplicationController
   $titulo = 'Comisiones' 
 
   def index
-  	@users = User.all.order('created_at DESC').where( :contador => false,:admin => false, :caja => false)
+  	@users = User.all.order('created_at DESC').where( :contador => false,:admin => false, :caja => false, :estado => true)
   end
 
   def employee

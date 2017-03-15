@@ -5,15 +5,16 @@ Rails.application.routes.draw do
   get 'commission/index'
 
   get 'commission/employee'
-
+  devise_for :users
   resources :records
   resources :inventaries
   resources :services
   resources :clients
+
   resources :users, :except => [:show, :create, :update]
   
 
-  devise_for :users
+
 
   authenticated :user do
     root 'dashboard#main'
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
     root 'welcome#index'
   end
   
+
   get 'usuarios' => 'users#index'
   get 'nuevo' => 'users#nuevo'
   get 'users/index'

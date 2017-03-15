@@ -1,5 +1,0 @@
-class RegistrationsController < ApplicationController
-
-
-
-end
