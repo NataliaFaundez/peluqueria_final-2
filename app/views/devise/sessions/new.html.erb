@@ -12,6 +12,11 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Ingresar" %>
+    <%@usuario_a_conectar = User.where(:email = f.email_field)%>
+    <%if(@usuario.estado == true)%>
+      <%= f.submit "Ingresar" %>
+    <%else%>
+      <%notice: "El usuario ingresado tiene prohibido el acceso"%>
+    <%end%>
   </div>
 <% end %>
