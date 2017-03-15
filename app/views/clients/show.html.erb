@@ -21,8 +21,10 @@
 </table>
 <hr>
 <div>
+<% if (!current_user.estilista) %>
 <h2>Crear Registro</h2>
 <%= render('records/form', record: @record )%>
+<%end %>
 <hr>
 <h2>Historial</h2>
 

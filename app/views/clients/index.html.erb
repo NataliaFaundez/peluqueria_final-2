@@ -41,9 +41,9 @@
         <td><%= client.apellido %></td>
         <td><%= client.rut %></td>
         <td><%= link_to 'Revisar', client %></td>
-        <td><%= link_to 'Editar', edit_client_path(client) %></td>
         <% if (!current_user.estilista) %>
-        <td><%= link_to 'Borrar', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Editar', edit_client_path(client) %></td>
+          <td><%= link_to 'Borrar', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>
