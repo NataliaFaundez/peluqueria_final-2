@@ -11,8 +11,8 @@
   <%= hidden_field_tag :direction, params[:direction] %>
   <%= hidden_field_tag :sort, params[:sort] %>
   <p>
-    <%= text_field_tag :search, params[:search], placeholder: 'Ingrese Nombre Producto' %>
-    <%= submit_tag "Search", :nombre => nil %>
+    <%= text_field_tag :search, params[:search], placeholder: 'Nombre de Producto' %>
+    <%= submit_tag "Buscar", :nombre => nil %>
   </p>
 <% end %>
   </div>
@@ -44,6 +44,8 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @inventaries
+%>
 
 <div class="">
   <h3><%= link_to 'Obtener en Excel', inventaries_path(format: :xlsx) %></h3>
@@ -51,5 +53,6 @@
 <br>
 
 <br>
+
 
 

@@ -73,7 +73,7 @@ class RecordsController < ApplicationController
     @record.destroy
 
     respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'Record was successfully destroyed.' }
+      format.html { redirect_to clients_url, notice: 'Registro Eliminado.' }
       format.json { head :no_content }
     end
   end

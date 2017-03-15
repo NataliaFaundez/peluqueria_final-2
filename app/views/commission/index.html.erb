@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Estilista</th>
+      <th>Apellido</th>
       <th>Revisar</th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.nombre %></td>
+        <td><%= user.apellido %></td>
         <td><%= link_to 'Revisar', commission_employee_path(user_id:user.id) %></td>
       </tr>
     <% end %>

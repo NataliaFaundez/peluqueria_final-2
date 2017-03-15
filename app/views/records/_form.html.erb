@@ -25,7 +25,7 @@
      <div class="form-group">
         <%= f.label :Estilista,class: 'col-sm-1 control-label' %>
         <div class="col-sm-5">
-          <%= f.select :user_id, User.where(:contador => false , :admin => false, :caja => false, :estado => true).collect{ |p| [ p.nombre, p.id ] }, {prompt: false}, {class:'form-control'} %>
+          <%= f.select :user_id, User.where(:contador => false , :admin => false, :caja => false, :estado => true).collect{ |p| [ p.nombre + ' ' + p.apellido, p.id ] }, {prompt: false}, {class:'form-control'} %>
         </div>
       </div>
   </div>

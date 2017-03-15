@@ -1,5 +1,5 @@
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
+            <div class="navbar-default sidebar" role="navigation" style="margin-top:100px;">
+                <div class="sidebar-nav navbar-collapse" >
                     <ul class="nav" id="side-menu">
                       <% if user_signed_in? %>
                       
@@ -24,14 +24,14 @@
                             <% end %>
                         </li>
                         <%end%>
-                        <% if (current_user.admin or current_user.contador) %>
+                        <% if (current_user.admin or current_user.contador or current_user.caja) %>
                         <li>
                             <%= link_to commission_index_path do %>
                             <i class="fa fa-money fa-fw"></i>Comisiones
                             <% end %>
                         </li>
                         <%end%>
-                        <% if (current_user.admin or current_user.caja) %>
+                        <% if (current_user.admin) %>
                         <li>
                             <%= link_to users_index_path do %>
                             <i class="fa fa-table fa-fw"></i>Usuarios
@@ -44,7 +44,7 @@
                         <% else %>
                          <li>
                             <%= link_to "Inicio Sesion",new_user_session_path%>
-                            <%= link_to "Registro Sesion",new_user_registration_path%>
+            
                         </li>
                        
                         

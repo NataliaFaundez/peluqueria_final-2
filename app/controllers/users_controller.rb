@@ -26,10 +26,14 @@ class UsersController < ApplicationController
 # def destroy_user
  # self.update(:estado => false)
 #end
+
+
  def destroy
      @usuario = User.find(params[:id])
-     @usuario.update_attributes(estado: false)
-    redirect_to usuarios_url
+     if (@usuario.estilista == true)
+      @usuario.update_attributes(estado: false)
+      redirect_to usuarios_url
+     end
  
  end
  
@@ -44,17 +48,13 @@ class UsersController < ApplicationController
    
 	private
 
-	def validar
-      if (current_user.contador?)
-        redirect_to root_path
-      else (current_user.caja)
-      	if(current_user.admin)
-      	
-      	else
-      		redirect_to root_path
-      	end
+ def validar
+      if (current_user.admin)
+        
+        else
+          redirect_to root_path
       end
-  end
+    end
     
    
 end

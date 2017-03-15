@@ -1,5 +1,6 @@
 class CommissionController < ApplicationController
   before_action :authenticate_user!
+  before_action :validar
   $titulo = 'Comisiones' 
 
   def index
@@ -29,5 +30,13 @@ class CommissionController < ApplicationController
   private
    def record_params
       params.require(:record).permit(:pagado)
+    end
+    
+    def validar
+      if (current_user.admin or current_user.caja or current_user.contador)
+        
+        else
+          redirect_to root_path 
+        end
     end
 end

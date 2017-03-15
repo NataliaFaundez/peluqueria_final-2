@@ -2,21 +2,29 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <%= f.label :email %><br />
+  <%= f.email_field :email, autofocus: true %>
+ 
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <%= f.label :password %><br />
+  <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
   <div class="actions">
-    <%@usuario_a_conectar = User.where(:email = f.email_field)%>
-    <%if(@usuario.estado == true)%>
-      <%= f.submit "Ingresar" %>
-    <%else%>
-      <%notice: "El usuario ingresado tiene prohibido el acceso"%>
-    <%end%>
+  
+  <%= f.submit "Ingresar" %>
+  
   </div>
 <% end %>
+  
+<!--  
+  
+  <#%@usuario_a_conectar = User.all.where(:email => @email)%>
+  <#%if(@usuario_a_conectar.estado == true)%>
+  
+  <#%end%>
+  
+   <#%@email = f.email_field%>
+-->

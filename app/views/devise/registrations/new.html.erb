@@ -1,8 +1,26 @@
-<h2>Crear Usuario</h2>
+<h2>Crear Estilista</h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html =>{:class => 'form-horizontal'}) do |f| %>
   <%= devise_error_messages! %>
   <br>
 
+
+    <div class="field">
+    <div class="form-group">
+    <%= f.label :nombre,class: 'col-sm-1 control-label'%>
+      <div class="col-sm-5">
+       <%= f.text_field :nombre, autocomplete: "off",class:'form-control',placeholder: 'Ingrese Nombre' %>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="form-group">
+    <%= f.label :apellido,class: 'col-sm-1 control-label'%>
+      <div class="col-sm-5">
+        <%= f.text_field :apellido, autocomplete: "off",class:'form-control',placeholder: 'Ingrese Apellido' %>
+      </div>
+    </div>
+  </div>
+  
   <div class="field">
       <div class="form-group">
         <%= f.label :email,class: 'col-sm-1 control-label'%>
@@ -33,57 +51,45 @@
     </div>
   </div>
 
+
+  <!--
   <div class="field">
     <div class="form-group">
-    <%= f.label :nombre,class: 'col-sm-1 control-label'%>
+    <#%= f.label :admin,class: 'col-sm-1 control-label'%>
       <div class="col-sm-5">
-       <%= f.text_field :nombre, autocomplete: "off",class:'form-control',placeholder: 'Ingrese Nombre' %>
-      </div>
-    </div>
-  </div>
-  <div class="field">
-    <div class="form-group">
-    <%= f.label :apellido,class: 'col-sm-1 control-label'%>
-      <div class="col-sm-5">
-        <%= f.text_field :apellido, autocomplete: "off",class:'form-control',placeholder: 'Ingrese Apellido' %>
-      </div>
-    </div>
-  </div>
-  
-  <div class="field">
-    <div class="form-group">
-    <%= f.label :admin,class: 'col-sm-1 control-label'%>
-      <div class="col-sm-5">
-        <%= f.check_box :admin, class:'form-control'%>
+        <#%= f.check_box :admin, class:'form-control'%>
       </div>
     </div>
   </div>
      <div class="field">
     <div class="form-group">
-    <%= f.label :caja,class: 'col-sm-1 control-label'%>
+    <#%= f.label :caja,class: 'col-sm-1 control-label'%>
       <div class="col-sm-5">
-        <%= f.check_box :caja, class:'form-control'%>
-      </div>
-    </div>
-  </div>
-
-   <div class="field">
-    <div class="form-group">
-    <%= f.label :estilista,class: 'col-sm-1 control-label'%>
-      <div class="col-sm-5">
-        <%= f.check_box :estilista, class:'form-control'%>
+        <#%= f.check_box :caja, class:'form-control'%>
       </div>
     </div>
   </div>
   
-   <div class="field">
+  <div class="field">
     <div class="form-group">
-    <%= f.label :contador,class: 'col-sm-1 control-label'%>
+    <#%= f.label :contador,class: 'col-sm-1 control-label'%>
       <div class="col-sm-5">
-        <%= f.check_box :contador, class:'form-control'%>
+        <#%= f.check_box :contador, class:'form-control'%>
       </div>
     </div>
   </div>
+-->
+   <div class="field">
+    <div class="form-group">
+    <%= f.label :estilista, { class: 'col-sm-1 control-label', :style => 'visibility: hidden'} %>
+      <div class="col-sm-5">
+        <%= hidden_field_tag :estilista, '0' %>
+        <%= f.check_box :estilista, {checked: true, :style => 'visibility: hidden'}%>
+      </div>
+    </div>
+  </div>
+  
+   
 
   <div class="actions">
     <%= f.submit("Crear" ,class: 'btn btn-default') %>

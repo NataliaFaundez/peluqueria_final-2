@@ -45,7 +45,7 @@ class ServicesController < ApplicationController
   def update
     respond_to do |format|
       if @service.update(service_params)
-        format.html { redirect_to @service, notice: 'Servicio Actualizado' }
+        format.html { redirect_to @service, notice: 'Servicio Editado' }
         format.json { render :show, status: :ok, location: @service }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class ServicesController < ApplicationController
   def destroy
     @service.destroy
     respond_to do |format|
-      format.html { redirect_to services_url, notice: 'Servicio Borrado' }
+      format.html { redirect_to services_url, notice: 'Servicio Eliminado' }
       format.json { head :no_content }
     end
   end

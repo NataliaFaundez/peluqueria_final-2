@@ -40,7 +40,7 @@ class InventariesController < ApplicationController
 
     respond_to do |format|
       if @inventary.save
-        format.html { redirect_to inventaries_path, notice: 'Producto Ingresado.' }
+        format.html { redirect_to inventaries_path, notice: 'Producto Creado.' }
         format.json { render :show, status: :created, location: @inventary }
       else
         format.html { render :new }
@@ -54,7 +54,7 @@ class InventariesController < ApplicationController
   def update
     respond_to do |format|
       if @inventary.update(inventary_params)
-        format.html { redirect_to @inventary, notice: 'Inventario Actualizado' }
+        format.html { redirect_to @inventary, notice: 'Proucto Editado' }
         format.json { render :show, status: :ok, location: @inventary }
       else
         format.html { render :edit }
@@ -84,7 +84,7 @@ class InventariesController < ApplicationController
       params.require(:inventary).permit(:nombre, :codigo, :cantidad, :precio, :estado, :marca)
     end
    def validar
-      if (current_user.admin or current_user.caja or current_user.estilista)
+      if (current_user.admin or current_user.caja)
         
         else
           redirect_to root_path 

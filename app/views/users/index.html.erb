@@ -17,7 +17,6 @@
       <th>Caja</th>
       <th>Estilista</th>
       <th>Contador</th>
-      <th>Editar</th>
       <th>Borrar</th>
     </tr>
   </thead>
@@ -31,7 +30,6 @@
       <td><%= user.caja? %></td>
       <td><%= user.estilista? %></td>
       <td><%= user.contador? %></td>
-      <td><%= link_to 'editar', edit_user_registration_path %></td>
       <td><%= link_to 'Eliminar', user, method: :delete, data: {confirm: 'Esta Seguro?'} %>
     </tr>
 

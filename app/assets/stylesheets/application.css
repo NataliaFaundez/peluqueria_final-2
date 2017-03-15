@@ -20,3 +20,10 @@
 @import 'metisMenu/metisMenu.min.css';
 @import 'font-awesome/css/font-awesome.min.css';
 
+.bgs {
+  background: url('fondo.jpg');
+  border: 1px solid red;
+  background-size: 100%;
+   background-repeat:no-repeat;
+  
+}
