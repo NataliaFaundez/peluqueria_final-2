@@ -4,7 +4,8 @@ class CommissionController < ApplicationController
   $titulo = 'Comisiones' 
 
   def index
-  	@users = User.all.order('created_at DESC').where( :contador => false,:admin => false, :caja => false, :estado => true)
+  	@users = User.all.order('estado DESC').where( :contador => false,:admin => false, :caja => false)
+  
   end
 
   def employee
@@ -29,7 +30,7 @@ class CommissionController < ApplicationController
   
   private
    def record_params
-      params.require(:record).permit(:pagado)
+      params.require(:record).permit(:pagado, :estado)
     end
     
     def validar

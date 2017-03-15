@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-   <% if (!current_user.estilista) %>
+   <% if (current_user.estilista or current_user.caja) %>
+  <%else%>
   <div class="">
   <label>Crear Servicio:</label>
     <%= link_to 'Nuevo Servicio', new_service_path %>
@@ -25,7 +26,8 @@
     <tr>
       <th>Nombre</th>
       <th>Valor</th>
-      <% if (!current_user.estilista) %>
+      <% if (current_user.estilista or current_user.caja) %>
+      <%else%>
       <th>Editar</th>
       <th>Borrar</th>
       <%end%>
@@ -37,7 +39,8 @@
       <tr>
         <td><%= service.nombre %></td>
         <td><%= service.valor %></td>
-        <% if (!current_user.estilista) %>
+        <% if (current_user.estilista or current_user.caja) %>
+        <%else%>
         <td><%= link_to 'Editar', edit_service_path(service) %></td>
         <td><%= link_to 'Borrar', service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <%end%>

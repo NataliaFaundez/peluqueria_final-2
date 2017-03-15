@@ -81,7 +81,7 @@ class InventariesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inventary_params
-      params.require(:inventary).permit(:nombre, :codigo, :cantidad, :precio, :estado, :marca)
+      params.require(:inventary).permit(:nombre, :codigo, :cantidad, :vendidos, :precio, :estado, :marca)
     end
    def validar
       if (current_user.admin or current_user.caja)

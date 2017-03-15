@@ -25,6 +25,19 @@ class Inventary < ApplicationRecord
   validates :cantidad, length: { in: 1..4, message: "la cantidad debe tener entre 1 y 4 caracteres"}
   validates :marca, length: { in: 1..50, message: "la marca debe tener entre 1 y 50 caracteres"}
   
+  validates :vendidos, numericality: { only_integer: true, message: "solo se permiten números enteros"}
+  validates :vendidos, numericality: {:greater_than_or_equal_to => 0, message: "no se permiten números negativos"}
+  validates :vendidos, length: { in: 1..4, message: "la cantidad debe tener entre 1 y 4 caracteres"}
+  
+  validate :custom_validation_function
+
+def custom_validation_function
+  if self.vendidos > self.cantidad
+      errors.add(:vendidos, "no puede ser mayor que cantidad")
+      return false
+  end
+end
+  
   def self.search(search)
     if search
       where('nombre LIKE ?', "%#{search}%") or where('marca LIKE ?', "%#{search}%")

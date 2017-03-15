@@ -1,9 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+  <% if (!current_user.caja) %>
   <div class="">
   <label>Crear Producto:</label>
     <%= link_to 'Nuevo Producto', new_inventary_path %>
   </div>
+  <%end%>
+  
 <div class="col-md-12">
 <h2>Busqueda Productos</h2>
    
@@ -24,9 +27,12 @@
       <th>Nombre</th>
       <th>Codigo</th>
       <th>Cantidad</th>
+      <th>Vendidos</th>
       <th>Precio</th>
       <th>Editar</th>
+      <%if (!current_user.caja) %>
       <th>Borrar</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -37,9 +43,12 @@
         <td><%= inventary.nombre %></td>
         <td><%= inventary.codigo %></td>
         <td><%= inventary.cantidad %></td>
+        <td><%= inventary.vendidos %></td>
         <td><%= inventary.precio %></td>
         <td><%= link_to 'Editar', edit_inventary_path(inventary) %></td>
+        <%if (!current_user.caja) %>
         <td><%= link_to 'Borrar', inventary, method: :delete, data: { confirm: 'Esta Seguro?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

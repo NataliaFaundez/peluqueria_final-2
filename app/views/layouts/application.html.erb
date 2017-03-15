@@ -33,7 +33,24 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <% if user_signed_in?%>
-                        <i class="fa fa-user fa-fw"></i>Usuario: <%= current_user.nombre%></i><i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i>Usuario: <%= current_user.nombre + ' ' +  current_user.apellido%></i><i class="fa fa-caret-down"></i>
+                        
+                        
+                        <br>
+                     <%if (current_user.admin) %>
+                        <p>Permiso: Admin </p>
+                    <% end%> 
+                    <%if (current_user.caja) %>
+                        <p>Permiso: Caja </p>
+                    <% end%> 
+                    <%if (current_user.contador) %>
+                        <p>Permiso: Contador </p>
+                    <% end%> 
+                    <%if (current_user.estilista) %>
+                        <p>Permiso: Estilista</p>
+                    <% end%> 
+                        
+                        
                         <% end %>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
@@ -59,7 +76,16 @@
         <div id="page-wrapper" >
             <div class="row">
                 <div class="col-lg-12">
-                    
+                    <!--=========================NOTIFICACIONES========================-->
+
+<% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+
+<!--========================FIN NOTIFICACIONES=====================-->
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -75,6 +101,7 @@
 
     </div>
     <!-- /#wrapper -->
+    
 </body>
 
 </html>

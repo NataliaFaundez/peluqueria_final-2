@@ -11,7 +11,7 @@
     </div>
 <% end %>
 <br>
-
+ <% if (!current_user.caja) %>
  <div class="field">
      <div class="form-group">
         <%= f.label :nombre,class: 'col-sm-1 control-label' %>
@@ -36,6 +36,16 @@
         </div>
       </div>
   </div>
+  <%end%>
+    <div class="field">
+     <div class="form-group">
+        <%= f.label :vendidos,class: 'col-sm-1 control-label' %>
+        <div class="col-sm-5">
+          <%= f.number_field :vendidos,class:'form-control',placeholder: 'Númerico'%>
+        </div>
+      </div>
+  </div>
+  <% if (!current_user.caja) %>
     <div class="field">
      <div class="form-group">
         <%= f.label :precio,class: 'col-sm-1 control-label' %>
@@ -52,7 +62,7 @@
         </div>
       </div>
   </div>
-
+<%end%>
    <div class="actions">
     <%= f.submit('Guardar',class: 'btn btn-default') %>
   </div>

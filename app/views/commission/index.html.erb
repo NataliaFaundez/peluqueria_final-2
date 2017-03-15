@@ -13,11 +13,21 @@
 
   <tbody>
     <% @users.each do |user| %>
-      <tr>
+      <% if (user.estado == false) %>
+      <tr style="background-color: #EDB2B2">
         <td><%= user.nombre %></td>
         <td><%= user.apellido %></td>
         <td><%= link_to 'Revisar', commission_employee_path(user_id:user.id) %></td>
-      </tr>
+        </tr>
+        <%end%>
+       <% if (user.estado == true) %>
+       <tr >
+         <td><%= user.nombre %></td>
+        <td><%= user.apellido %></td>
+        <td><%= link_to 'Revisar', commission_employee_path(user_id:user.id) %></td>
+        </tr>
+        <%end%>
+      
     <% end %>
   </tbody>
 </table>
